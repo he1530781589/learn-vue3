@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- 只有 v-memo 指令标记的属性变更后, 才会更新页面 -->
+    <div v-memo="[name, age]">
+      <h2>姓名: {{ name }}</h2>
+      <h2>年龄: {{ age }}</h2>
+      <h2>身高: {{ height }}</h2>
+    </div>
+    <button @click="updateAge">改变年龄</button>
+    <button @click="updateHeight">改变身高</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // 1.创建app
+    const app = Vue.createApp({
+      // data: option api
+      data: function () {
+        return {
+          name: "why",
+          age: 18,
+          height: 1.88
+        }
+      },
+
+      methods: {
+        updateAge() {
+          // this.name = "kobe"
+          this.age++
+        },
+        updateHeight() {
+          this.height++
+        }
+      }
+    })
+
+    // 2.挂载app
+    app.mount("#app")
+  </script>
+</body>
+
+</html>

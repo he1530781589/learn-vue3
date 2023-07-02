@@ -1,22 +1,30 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
 
   <div id="app">
-    <h2>{{title}}</h2>
+    <h2>{{ message }}</h2>
   </div>
 
   <script src="../lib/vue.js"></script>
   <script>
     // 创建VueApp
     const app = Vue.createApp({
-      data: function() {
+      template: `
+        <h2>电影列表</h2>
+        <ul>
+          <li v-for="item in movies">{{item}}</li>
+        </ul>
+      `,
+      data() {
         return {
-          title: "Hello World"
+          movies: ["黑客帝国", "大话西游", "美人鱼", "流浪地球"]
         }
       }
     })
@@ -24,6 +32,7 @@
     // 挂载
     app.mount("#app")
   </script>
-  
+
 </body>
+
 </html>

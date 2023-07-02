@@ -1,22 +1,35 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
 
-  <div id="app">
-    <h2>{{title}}</h2>
-  </div>
+  <div id="app"></div>
 
   <script src="../lib/vue.js"></script>
   <script>
     // 创建VueApp
     const app = Vue.createApp({
-      data: function() {
+      template: `
+        <h2>当前计数: {{counter}}</h2>
+        <button @click="increment">+1</button>
+        <button @click="decrement">-1</button>
+      `,
+      data() {
         return {
-          title: "Hello World"
+          counter: 0
+        }
+      },
+      methods: {
+        increment() {
+          this.counter++
+        },
+        decrement() {
+          this.counter--
         }
       }
     })
@@ -24,6 +37,7 @@
     // 挂载
     app.mount("#app")
   </script>
-  
+
 </body>
+
 </html>
