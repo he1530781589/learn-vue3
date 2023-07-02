@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 绑定事件的修饰符
+        修饰符就是用来方便地管理事件的小工具，
+        比如.prevent可以阻止默认行为，.stop可以停止事件冒泡，.once则让事件只执行一次。
+        这就避免了我们在处理事件时要写一堆复杂的代码。
+      文档: https://cn.vuejs.org/api/built-in-directives.html#v-on
+   -->
+  <div id="app">
+    <div class="box" @click="divClick">
+      <button @click.stop="btnClick">按钮</button>
+    </div>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // 1.创建app
+    const app = Vue.createApp({
+      // data: option api
+      data: function () {
+        return {
+          message: "Hello Vue"
+        }
+      },
+      methods: {
+        btnClick(event) {
+          console.log("btnClick")
+        },
+        divClick() {
+          console.log("divClick")
+        }
+      }
+    })
+
+    // 2.挂载app
+    app.mount("#app")
+  </script>
+</body>
+
+</html>

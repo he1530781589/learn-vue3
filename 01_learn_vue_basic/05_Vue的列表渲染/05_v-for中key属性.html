@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- 用v-for的时候，记得尽量加个key，这就像给每个元素打个标签,
+    有了这个标签，Vue底层用diff算法比对的时候就能更快地找到它们，渲染速度就能提上去。
+    所以，记得用v-for指令时，尽量绑定上key属性" -->
+  <div id="app">
+    <button @click="insertF">插入f</button>
+    <ul>
+      <!-- key要求是唯一: id -->
+      <li v-for="item in letters" :key="item">{{item}}</li>
+    </ul>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // 1.创建app
+    const app = Vue.createApp({
+      // data: option api
+      data() {
+        return {
+          letters: ["a", "b", "c", "d", "e"]
+        }
+      },
+      methods: {
+        insertF() {
+          this.letters.splice(2, 0, "f")
+
+          this.letters.splice()
+        }
+      }
+    })
+
+    // 2.挂载app
+    app.mount("#app")
+  </script>
+</body>
+
+</html>

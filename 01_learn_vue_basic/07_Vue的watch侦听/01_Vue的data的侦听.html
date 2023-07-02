@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <button @click="changeMessage">change</button>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // 创建VueApp
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "Hello Vue",
+          // 在Vue中，当你改变引用类型数据里面的内容时，watch是不会被触发的, 只有当数据的整体引用发生变化，watch才会响应
+          info: { name: "hm", age: 18 },
+          areas: ["太原", "南京", "苏州"]
+        }
+      },
+      methods: {
+        changeMessage() {
+          this.message = "Hello World"
+          this.info.name = "san fu "
+          this.areas.push("杭州")
+        }
+      },
+      watch: {
+        message(newValue, oldValue) {
+          console.log("message的值发生了变化:", newValue, oldValue)
+        },
+        info(newValue, oldValue) {
+          console.log(newValue, oldValue)
+        },
+        areas(newValue, oldValue) {
+          console.log(newValue, oldValue)
+        }
+      }
+    })
+
+    // 挂载
+    app.mount("#app")
+  </script>
+
+</body>
+
+</html>

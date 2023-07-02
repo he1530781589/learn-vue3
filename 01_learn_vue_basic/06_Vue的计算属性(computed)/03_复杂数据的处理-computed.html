@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2>{{ fullName }}</h2>
+
+    <h2>{{scoreLevel}}</h2>
+
+    <h2>{{reverseMessage}}</h2>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // 创建VueApp
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "Hello Vue",
+          firstName: "he",
+          lastName: "min",
+
+          // 2. 成绩, 大于等于60合格, 否则不合格
+          score: 30,
+
+          message: "my name is hm"
+        }
+      },
+      computed: {
+        fullName: function () {
+          return this.firstName + this.lastName
+        },
+        scoreLevel: function () {
+          return this.score >= 60 ? "合格" : "不合格"
+        },
+        reverseMessage: function () {
+          return this.message.split(" ").reverse().join(" ")
+        }
+      }
+    })
+
+    // 挂载
+    app.mount("#app")
+  </script>
+
+</body>
+
+</html>
