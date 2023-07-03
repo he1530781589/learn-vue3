@@ -1,0 +1,34 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <textarea cols="30" rows="10" v-model="content"></textarea>
+
+    <p>输入的内容: {{ content }}</p>
+  </div>
+
+  <script src="../lib/vue.js"></script>
+  <script>
+    // 创建VueApp
+    const app = Vue.createApp({
+      data() {
+        return {
+          content: ""
+        }
+      }
+    })
+
+    // 挂载
+    app.mount("#app")
+  </script>
+
+</body>
+
+</html>
