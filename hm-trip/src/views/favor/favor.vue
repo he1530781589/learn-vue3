@@ -1,6 +1,6 @@
 <template>
-  <div class="app">
-    <router-view></router-view>
+  <div class="favor">
+    <h2>favor</h2>
   </div>
 </template>
 
