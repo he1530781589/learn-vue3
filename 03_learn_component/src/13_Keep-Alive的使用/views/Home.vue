@@ -18,7 +18,6 @@ export default {
   deactivated() {
     console.log("home  deactivated")
   }
-  
 }
 </script>
 
