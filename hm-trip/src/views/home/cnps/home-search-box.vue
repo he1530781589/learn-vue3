@@ -70,7 +70,7 @@
 import router from "@/router";
 import useCityStore from "@/stores/modules/city";
 import {computed, ref} from "vue";
-import {formatDate, getDaysDiff, getTodayAndTomorrow} from "@/utils/date";
+import {formatDate, getDaysDiff} from "@/utils/date";
 import {storeToRefs} from "pinia";
 import useHomeStore from "@/stores/modules/home";
 import {useDisableTextSelection} from "@/hooks/useDisableTextSelection";
