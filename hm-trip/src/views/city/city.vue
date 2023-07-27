@@ -19,6 +19,7 @@
         <city-group v-show="key === tabActive" :group-data="value"/>
       </template>
     </div>
+    <van-back-top target=".content" right="5vw" bottom="4vh" />
   </div>
 </template>
 

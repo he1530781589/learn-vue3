@@ -2,14 +2,14 @@ import dayjs from "dayjs";
 
 const formatTemplate = "MM月DD日"
 
-export function formatDate(dateString) {
-  return dayjs(dateString).format(formatTemplate);
+export function formatDate(dateString, format = formatTemplate) {
+  return dayjs(dateString).format(format);
 }
 
 export function getTodayAndTomorrow() {
-  const today = dayjs().format(formatTemplate);
-  const tomorrow = dayjs().add(1, 'day').format(formatTemplate);
-  const stay = getDaysDiff(dayjs(), dayjs().add(1, 'day'))
+  const today = dayjs();
+  const tomorrow = dayjs().add(1, 'day');
+  const stay = getDaysDiff(today, tomorrow)
   return {today, tomorrow, stay};
 }
 

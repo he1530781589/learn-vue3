@@ -14,14 +14,14 @@
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
-          <span class="time">{{ startDate }}</span>
+          <span class="time">{{ startDateStr }}</span>
         </div>
         <div class="stay">共{{ stay }}晚</div>
       </div>
       <div class="end">
         <div class="date">
           <span class="tip">入住</span>
-          <span class="time">{{ endDate }}</span>
+          <span class="time">{{ endDateStr }}</span>
         </div>
       </div>
     </div>
@@ -69,24 +69,30 @@
 <script setup>
 import router from "@/router";
 import useCityStore from "@/stores/modules/city";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {formatDate, getDaysDiff, getTodayAndTomorrow} from "@/utils/date";
 import {storeToRefs} from "pinia";
 import useHomeStore from "@/stores/modules/home";
 import {useDisableTextSelection} from "@/hooks/useDisableTextSelection";
+import useMainStore from "@/stores/modules/main";
 
 const showCalendar = ref(false)
 const cityStore = useCityStore()
-const stay = ref(getTodayAndTomorrow().stay)
-const startDate = ref(getTodayAndTomorrow().today)
-const endDate = ref(getTodayAndTomorrow().tomorrow)
-const homeSearch = ref(null)
+const stay = ref(1)
 
+
+const mainStore = useMainStore()
+const {startDate, endDate} = storeToRefs(mainStore);
+const startDateStr = computed(() => formatDate(startDate.value))
+const endDateStr = computed(() => formatDate(endDate.value))
+
+// 禁止选择文本
+const homeSearch = ref(null)
 useDisableTextSelection([homeSearch])
 
+// 热门搜索
 const homeStore = useHomeStore();
 const {hotSuggests} = storeToRefs(homeStore)
-console.log(hotSuggests);
 
 const cityClick = () => {
   router.push("/city")
@@ -97,8 +103,8 @@ const dateRangeClick = () => {
 }
 
 const onConfirm = (range) => {
-  startDate.value = formatDate(range[0])
-  endDate.value = formatDate(range[1])
+  mainStore.startDate = range[0]
+  mainStore.endDate = range[1]
   stay.value = getDaysDiff(range[0], range[1])
   showCalendar.value = false
 }

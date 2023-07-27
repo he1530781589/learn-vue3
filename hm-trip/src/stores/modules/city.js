@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {getCityAll} from "@/services/modules/city";
+import {getCityAll} from "@/services";
 
 const useCityStore = defineStore("city", {
   state: () => ({
