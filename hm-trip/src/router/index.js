@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router"
+import {createRouter, createWebHashHistory} from "vue-router"
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -29,7 +29,14 @@ const router = createRouter({
       meta: {
         hideTabBar: true
       }
-    }
+    },
+    {
+      path: "/detail/:id",
+      component: () => import("@/views/detail/detail.vue"),
+      meta: {
+        hideTabBar: true
+      }
+    },
   ]
 })
 

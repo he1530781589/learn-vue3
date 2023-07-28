@@ -52,17 +52,6 @@
           text="开始搜索"
       ></van-button>
     </div>
-
-    <!-- 日历 -->
-    <van-calendar
-        v-model:show="showCalendar"
-        type="range"
-        :round="false"
-        color="#ff9854"
-        :show-confirm="false"
-        :formatter="calendarFormatter"
-        @confirm="onConfirm"
-    />
   </div>
 </template>
 
@@ -70,19 +59,16 @@
 import router from "@/router";
 import useCityStore from "@/stores/modules/city";
 import {computed, ref} from "vue";
-import {formatDate, getDaysDiff} from "@/utils/date";
+import {formatDate} from "@/utils/date";
 import {storeToRefs} from "pinia";
 import useHomeStore from "@/stores/modules/home";
 import {useDisableTextSelection} from "@/hooks/useDisableTextSelection";
 import useMainStore from "@/stores/modules/main";
 
-const showCalendar = ref(false)
 const cityStore = useCityStore()
-const stay = ref(1)
-
 
 const mainStore = useMainStore()
-const {startDate, endDate} = storeToRefs(mainStore);
+const {startDate, endDate, stay, showCalendar} = storeToRefs(mainStore);
 const startDateStr = computed(() => formatDate(startDate.value))
 const endDateStr = computed(() => formatDate(endDate.value))
 
@@ -102,22 +88,7 @@ const dateRangeClick = () => {
   showCalendar.value = true
 }
 
-const onConfirm = (range) => {
-  mainStore.startDate = range[0]
-  mainStore.endDate = range[1]
-  stay.value = getDaysDiff(range[0], range[1])
-  showCalendar.value = false
-}
-
 // Vant日历插件插件格式化
-const calendarFormatter = (day) => {
-  if (day.type === 'start') {
-    day.bottomInfo = '入住';
-  } else if (day.type === 'end') {
-    day.bottomInfo = '离店';
-  }
-  return day
-}
 </script>
 
 <style lang="less" scoped>

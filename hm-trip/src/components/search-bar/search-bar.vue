@@ -28,6 +28,10 @@ const {startDate, endDate} = storeToRefs(mainStore);
 const startDateStr = computed(() => formatDate(startDate.value, "MM.DD"))
 const endDateStr = computed(() => formatDate(endDate.value, "MM.DD"))
 
+const dateClick = () => {
+  mainStore.showCalendar = true
+}
+
 </script>
 
 <style lang="less" scoped>
